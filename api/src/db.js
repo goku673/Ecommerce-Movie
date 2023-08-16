@@ -1,8 +1,10 @@
 const  {Sequelize} = require('sequelize');
 
 const movieModel =  require('./model/movies');
+require('dotenv').config();
+const {DB,DB_PASSWORD,HOST,PORT,NAME} = process.env;
 
-const sequelize = new Sequelize( `postgres://postgres:pepito123@localhost:5432/movies`);
+const sequelize = new Sequelize( `postgres://${DB}:${DB_PASSWORD}@${HOST}:${PORT}/${NAME}`);
 
 movieModel(sequelize);
 
