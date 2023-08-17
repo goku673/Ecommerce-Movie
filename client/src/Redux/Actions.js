@@ -4,7 +4,7 @@ import { GET_ANIME
 import axios from 'axios';
 
 export const getAnime = ()=> async (dispatch)=>{
-       const response  = await axios.get(`http://localhost:3004/movies/`);
+       const response  = await axios.get(`http://localhost:3002/movies/`);
        console.log(response);
        return dispatch({
            type : GET_ANIME,
@@ -14,7 +14,7 @@ export const getAnime = ()=> async (dispatch)=>{
 
 export const detailsMovie = (id) => async (dispatch) => { 
      //https://api.jikan.moe/v4/anime/22
-      const response = (await axios.get(`http://localhost:3004/movies/${id}`)).data;
+      const response = (await axios.get(`http://localhost:3002/movies/${id}`)).data;
       console.log(response, "holaa a todass las personas");
        return dispatch({
          type : GET_MOVIE_DETAIL,

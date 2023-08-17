@@ -7,7 +7,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const mainRouter = require('./router/mainRouter');
 const bodyParser = require('body-parser');
-
+require('./middlewares/google')
 const app = express();
 
 app.name = 'API';
@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(morgan('dev'));
 app.use(cookieParser());
+
 //configuracion de las cors;
 
 app.use((req,res,next) => {
@@ -33,6 +34,13 @@ app.use((req,res,next) => {
 
 // para detectar la estructura json;
 app.use(express.json());
+app.use('/auth',passport.authenticate('aut-google',{
+    scope : [
+        'https://www.googleapis.com/auth/userinfo.profile',
+        'https://www.googleapis.com/auth/userinfo.email',
+    ],
+    session :false,
+}),mainRouter);
 app.use(mainRouter);
 
 
