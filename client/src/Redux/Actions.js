@@ -1,6 +1,7 @@
 import { GET_ANIME
   ,GET_MOVIE_DETAIL
-  ,ADD_CAR} from "./Actions-type";
+  ,ADD_CAR,
+  LOG_GOOGLE} from "./Actions-type";
 import axios from 'axios';
 
 export const getAnime = ()=> async (dispatch)=>{
@@ -25,3 +26,13 @@ export const detailsMovie = (id) => async (dispatch) => {
 export const addCarrito = (movie) => { 
    return ({type :ADD_CAR, payload : movie});
 }
+
+export const logGoogle = () => async (dispatch) => {
+  const response = (await axios.get('http://localhost:3002/auth/logGoogle')).data;
+  return dispatch({
+    type: LOG_GOOGLE,
+    payload: response,
+  });
+}
+
+

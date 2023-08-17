@@ -6,8 +6,16 @@ import seya from '../image/seya.jpg';
 import demon from '../image/demon.jpg';
 import boku from '../image/boku.jpg';
 import naruto from '../image/naruto.jpg';
-
+import { logGoogle } from '../Redux/Actions';
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch} from 'react-redux';
+import  {useSnackbar}  from 'notistack';
 const LandingPage = () => {
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state)=> state.user);
+  const {enqueueSnackbar} = useSnackbar();
   const images = [
     {
       original: seya,
@@ -27,6 +35,14 @@ const LandingPage = () => {
     },
   ];
 
+  const enterPage = async () => { 
+    // await dispatch(logGoogle());
+    // navigate('/home');
+  }
+  
+    
+  
+  //link /home
   return (
     <div className="bg-gray-900 h-screen flex flex-col items-center justify-center">
       <div className="flex flex-col md:flex-row md:items-center">
@@ -37,11 +53,9 @@ const LandingPage = () => {
           <div className="text-white text-4xl font-bold mb-8">
             Las mejores películas de anime al mejor precio
           </div>
-          <div>
-            <Link to="/home" className="bg-gradient-to-tl from-purple-500 to-indigo-600 text-white text-xl px-8 py-4 rounded-md">
+          <button  className=' bg-gradient-to-tl from-purple-500 to-indigo-600 text-white text-xl px-8 py-4 rounded-md' onClick={enterPage}>
               Entrar
-            </Link>
-          </div>
+              </button>
         </div>
       </div>
     </div>

@@ -17,11 +17,11 @@ const Pagination = () => {
       dispatch(getAnime());
     }
 
-    setCurrentPage(0); // Reiniciar la página cuando se carguen nuevos datos.
+    setCurrentPage(0); 
 
   }, [dispatch]);
 
-  // Utiliza slice para obtener los elementos correspondientes a la página actual.
+
   const itemsPerPage = 6;
   const lastIndex = (currentPage + 1) * itemsPerPage;
   const firstIndex = lastIndex - itemsPerPage;

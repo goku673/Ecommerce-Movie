@@ -1,6 +1,10 @@
-const googleLogin =  (req, res) => {
-    // 
-    res.status(200).send(req.user)
+const googleLogin = (req, res) => {
+    
+    const objetoGoogle = {
+        name :req.user.displayName,
+        image : req.user.photos[0].value
+    }
+    res.status(200).send(objetoGoogle);
 };
 
 
