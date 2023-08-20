@@ -1,14 +1,13 @@
 import { GET_ANIME
   ,GET_MOVIE_DETAIL
   ,ADD_CAR
-  ,LOG_GOOGLE} from "./Actions-type";
+  ,DELETE_CAR} from "./Actions-type";
 
 const initialState = {
   allMovies: [],
   copyAllMovies: [],
   movieDetail : {},
   carMovie : [],
-  user : {}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -29,11 +28,11 @@ const rootReducer = (state = initialState, action) => {
           ...state,
          carMovie : [...state.carMovie,action.payload],
       }
-    case LOG_GOOGLE :
-      return { 
-         ...state, 
-         user : action.payload,
-      }
+    case DELETE_CAR : 
+         return {
+          ...state,
+          carMovie : [],
+         }
     default:
       return state;
   }

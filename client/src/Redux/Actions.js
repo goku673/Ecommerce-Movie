@@ -1,6 +1,7 @@
 import { GET_ANIME
   ,GET_MOVIE_DETAIL
-  ,ADD_CAR} from "./Actions-type";
+  ,ADD_CAR
+  ,DELETE_CAR} from "./Actions-type";
 import axios from 'axios';
 
 export const getAnime = ()=> async (dispatch)=>{
@@ -13,9 +14,7 @@ export const getAnime = ()=> async (dispatch)=>{
 }
 
 export const detailsMovie = (id) => async (dispatch) => { 
-     //https://api.jikan.moe/v4/anime/22
       const response = (await axios.get(`http://localhost:3002/movies/${id}`)).data;
-      console.log(response, "holaa a todass las personas");
        return dispatch({
          type : GET_MOVIE_DETAIL,
          payload : response,
@@ -26,3 +25,6 @@ export const addCarrito = (movie) => {
    return ({type :ADD_CAR, payload : movie});
 }
 
+export const deleteCar  = (payload) => { 
+     return ({type : DELETE_CAR, payload:payload });
+}
