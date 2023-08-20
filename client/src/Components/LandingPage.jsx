@@ -6,15 +6,10 @@ import seya from '../image/seya.jpg';
 import demon from '../image/demon.jpg';
 import boku from '../image/boku.jpg';
 import naruto from '../image/naruto.jpg';
-import { logGoogle } from '../Redux/Actions';
-import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch} from 'react-redux';
 import  {useSnackbar}  from 'notistack';
 const LandingPage = () => {
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const user = useSelector((state)=> state.user);
+
   const {enqueueSnackbar} = useSnackbar();
   const images = [
     {
@@ -35,13 +30,8 @@ const LandingPage = () => {
     },
   ];
 
-  const enterPage = async () => { 
-    // await dispatch(logGoogle());
-    // navigate('/home');
-  }
-  
-    
-  
+
+
   //link /home
   return (
     <div className="bg-gray-900 h-screen flex flex-col items-center justify-center">
