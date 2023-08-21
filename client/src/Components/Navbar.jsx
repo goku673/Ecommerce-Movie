@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import { deleteCar } from '../Redux/Actions';
 import { useDispatch } from 'react-redux';
+
 const Navbar = () => {
   const dispatch = useDispatch();
   const carMovie = useSelector((state) => state.carMovie);
@@ -32,7 +33,7 @@ const Navbar = () => {
     setShowModal(!showModal);
   };
 
-  const handleButton = (event) => {
+  const handleButton = () => {
       if(carMovie.length  === 0){
        return   Swal.fire({
           title : "Compra", 
@@ -48,7 +49,6 @@ const Navbar = () => {
           icon : 'success',
        })
        dispatch(deleteCar());
-       // aumentar un useEffect
   }
   return (
     <>
@@ -66,7 +66,6 @@ const Navbar = () => {
             <div>
               <Link to ='/contact'>contact</Link>
             </div>
-
             <div onClick={handleModal} className="relative">
               <span className="material-symbols-outlined hover:text-white cursor-pointer">
                 shopping_cart
@@ -99,7 +98,6 @@ const Navbar = () => {
                 </div>
               ))}
             </div>
-            
             <h2 className='flex justify-center text-white'>Total :  {precioTotal}</h2>
             <button className='bg-green-400 flex items-center ml-40 px-10 hover:bg-green-500 ' onClick={handleButton}>BUY</button>
           </div>

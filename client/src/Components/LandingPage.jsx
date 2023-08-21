@@ -7,10 +7,12 @@ import demon from '../image/demon.jpg';
 import boku from '../image/boku.jpg';
 import naruto from '../image/naruto.jpg';
 import  {useSnackbar}  from 'notistack';
+import { useNavigate } from 'react-router-dom';
 const LandingPage = () => {
 
 
   const {enqueueSnackbar} = useSnackbar();
+  const navigate = useNavigate();
   const images = [
     {
       original: seya,
@@ -30,7 +32,9 @@ const LandingPage = () => {
     },
   ];
 
-
+  const handleButton = () => {
+      navigate("/home")
+  }
 
   //link /home
   return (
@@ -43,7 +47,7 @@ const LandingPage = () => {
           <div className="text-white text-4xl font-bold mb-8">
             Las mejores películas de anime al mejor precio
           </div>
-          <button  className=' bg-gradient-to-tl from-purple-500 to-indigo-600 text-white text-xl px-8 py-4 rounded-md' onClick={enterPage}>
+          <button  className=' bg-gradient-to-tl from-purple-500 to-indigo-600 text-white text-xl px-8 py-4 rounded-md' onClick={handleButton}>
               Entrar
               </button>
         </div>

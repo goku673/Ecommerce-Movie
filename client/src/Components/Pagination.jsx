@@ -32,7 +32,7 @@ const Pagination = () => {
     moviesToShow = copyAllMovies.slice(firstIndex, lastIndex);
   }
   
-  //Función para manejar el cambio de página
+
   const handlePageChange = (selected) => {
     setCurrentPage(selected.selected);
   };

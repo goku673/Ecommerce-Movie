@@ -28,12 +28,7 @@ const handleClick = () => {
     enqueueSnackbar('add sussces',{variant : 'success'});  
     dispatch(addCarrito(detailMovie));
   }
-    //  if(!verifyCardAdd(detailMovie)){
-    //   
-    //   return;
-    //  }
-    //  enqueueSnackbar('already added',{variant : 'warning'});
-
+  
 }
    
     
