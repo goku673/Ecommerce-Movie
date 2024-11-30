@@ -7,6 +7,7 @@ import seya from '../image/seya.jpg'
 import demon from '../image/demon.jpg'
 import boku from '../image/boku.jpg'
 import naruto from '../image/naruto.jpg'
+import RegistroForm from "./auth/singIn"
 
 const images = [
   {
@@ -31,13 +32,17 @@ const images = [
   }
 ]
 
+  const titleHeader = "Las mejores películas de anime al mejor precio";
+  const subtitleHeader = "Disfruta de una amplia colección de anime en alta calidad. Nuevos títulos agregados semanalmente.";
+  const textButtonPay = "Comenzar ahora";
+  const textButtonSesion = "Iniciar Sesión";
 const  LandingPage = () => {
   const [currentImage, setCurrentImage] = useState(0)
-
+  const [forSingIn, setForSingIn] = useState(false)
   const nextImage = () => {
     setCurrentImage((prev) => (prev + 1) % images.length)
   }
-
+console.log(forSingIn);
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-950">
       {/* Vista Móvil */}
@@ -59,15 +64,18 @@ const  LandingPage = () => {
         
         <div className="text-center space-y-6">
           <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-indigo-600">
-            Las mejores películas de anime al mejor precio
+            {titleHeader}
           </h1>
           <p className="text-gray-400 text-sm max-w-md mx-auto">
-            Disfruta de una amplia colección de anime en alta calidad. Nuevos títulos agregados semanalmente.
+            {subtitleHeader}
           </p>
           <Link to="/home" className="block">
             <button className="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-medium transition-all duration-200 flex items-center justify-center">
-              <Play className="mr-2 h-4 w-4" /> Comenzar ahora
+              <Play className="mr-2 h-4 w-4" /> {textButtonPay}
             </button>
+            <button className="text-white">
+                  {textButtonSesion}
+                </button>
           </Link>
         </div>
       </div>
@@ -75,21 +83,30 @@ const  LandingPage = () => {
       {/* Vista Desktop */}
       <div className="hidden lg:flex min-h-screen">
         <div className="flex-1 flex items-center justify-center p-12">
-          <div className="max-w-xl space-y-8">
-            <h1 className="text-5xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-indigo-600">
-              Las mejores películas de anime al mejor precio
-            </h1>
-            <p className="text-gray-400 text-lg">
-              Disfruta de una amplia colección de anime en alta calidad. Nuevos títulos agregados semanalmente.
-            </p>
-            <div className="flex gap-4">
-              <Link to="/home">
-                <button className="px-8 py-4 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-medium transition-all duration-200 flex items-center">
-                  <Play className="mr-2 h-4 w-4" /> Comenzar ahora
-                </button>
-              </Link>
-            </div>
-          </div>
+          { !forSingIn ? (
+                   <div className="max-w-xl space-y-8">
+                   <h1 className="text-5xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-indigo-600">
+                     {titleHeader}
+                   </h1>
+                   <p className="text-gray-400 text-lg">
+                     {subtitleHeader}
+                   </p>
+                   <div className="flex gap-5 flex-col">
+                     <Link to="/home">
+                       <button className="px-8 py-4 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-medium transition-all duration-200 flex items-center">
+                         <Play className="mr-2 h-4 w-4" />{textButtonPay}
+                       </button>
+                     </Link>
+                      
+                     <button className="text-white" onClick={() => setForSingIn(true)}>
+                         {textButtonSesion}
+                       </button>
+                   </div>
+                 </div>
+          ) : (
+             <h1>h0</h1>
+          )}
+     
         </div>
 
         <div className="flex-1 relative p-12">
