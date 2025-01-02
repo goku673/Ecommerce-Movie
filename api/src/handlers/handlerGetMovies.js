@@ -28,7 +28,6 @@ const getMoviesById = async (req,res) => {
 const getMoviesByName = async (req,res) => {
    
      const {name} = req.query;
-     console.log(name, "hola a todas las personas las quiero ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;");
      try {
           if(name){
             const response = await getMovieByName(name);
