@@ -1,13 +1,15 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { ChevronRight, Play } from 'lucide-react'
+import FormSignIn from "./auth/SignIn";
+import FormSignUp from "./auth/SignUp";
 
 // Importa las imágenes
 import seya from '../image/seya.jpg'
 import demon from '../image/demon.jpg'
 import boku from '../image/boku.jpg'
 import naruto from '../image/naruto.jpg'
-import RegistroForm from "./auth/singIn"
+
 
 const images = [
   {
@@ -37,12 +39,16 @@ const images = [
   const textButtonPay = "Comenzar ahora";
   const textButtonSesion = "Iniciar Sesión";
 const  LandingPage = () => {
-  const [currentImage, setCurrentImage] = useState(0)
-  const [forSingIn, setForSingIn] = useState(false)
+  const [currentImage, setCurrentImage] = useState(0);
+  const [goForm, setGoForm] = useState("");
+
   const nextImage = () => {
     setCurrentImage((prev) => (prev + 1) % images.length)
   }
-console.log(forSingIn);
+
+ const handleGotoForm = (state) => {
+   setGoForm(state);
+ }
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-950">
       {/* Vista Móvil */}
@@ -69,7 +75,7 @@ console.log(forSingIn);
           <p className="text-gray-400 text-sm max-w-md mx-auto">
             {subtitleHeader}
           </p>
-          <Link to="/home" className="block">
+          <Link to="/home" className="">
             <button className="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-medium transition-all duration-200 flex items-center justify-center">
               <Play className="mr-2 h-4 w-4" /> {textButtonPay}
             </button>
@@ -83,7 +89,7 @@ console.log(forSingIn);
       {/* Vista Desktop */}
       <div className="hidden lg:flex min-h-screen">
         <div className="flex-1 flex items-center justify-center p-12">
-          { !forSingIn ? (
+          { goForm === "" ? (
                    <div className="max-w-xl space-y-8">
                    <h1 className="text-5xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-indigo-600">
                      {titleHeader}
@@ -91,21 +97,24 @@ console.log(forSingIn);
                    <p className="text-gray-400 text-lg">
                      {subtitleHeader}
                    </p>
-                   <div className="flex gap-5 flex-col">
+                   <div className="flex gap-5 flex-row">
                      <Link to="/home">
                        <button className="px-8 py-4 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-medium transition-all duration-200 flex items-center">
                          <Play className="mr-2 h-4 w-4" />{textButtonPay}
                        </button>
                      </Link>
                       
-                     <button className="text-white" onClick={() => setForSingIn(true)}>
+                     <button className="text-white" onClick={() => handleGotoForm("signIn")}>
                          {textButtonSesion}
                        </button>
                    </div>
                  </div>
-          ) : (
-             <h1>h0</h1>
-          )}
+          ) : goForm === "signIn" ? (
+             <FormSignIn handleGotoForm={handleGotoForm}/>
+          ): (
+            <FormSignUp handleGotoForm={handleGotoForm}/>
+          )
+        }
      
         </div>
 

@@ -1,23 +1,14 @@
 import React from 'react';
-import Card from './Card';
-import { Link } from 'react-router-dom';
+import MovieCard from './Card';
 
-const Cards = ({ movies }) => {
+function MovieList({ movies }) {
   return (
-    <div className='grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-3 justify-center'>
-      {movies?.map((movie) => (
-        <div key={movie.id} className='flex justify-center' >
-          <Card
-            title={movie.title}
-            imagen={movie.images}
-            rating={movie.rating}
-            price={movie.price}
-            details={`/peliculaDetail/${movie.id}`}
-          />
-        </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      {movies.map(movie => (
+        <MovieCard key={movie.mal_id} movie={movie} />
       ))}
     </div>
   );
-};
+}
 
-export default Cards;
+export default MovieList;

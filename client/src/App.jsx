@@ -16,10 +16,10 @@ function App() {
       {location.pathname !== '/' && <Navbar />}
 
       <Routes>
-        <Route path='/' element={<LandingPage />} />
-        <Route path='/home' element={<Home />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/peliculaDetail/:id' element={<Detail />} />
+        <Route path='/' element={<LandingPage/>} />
+        <Route path='/home' element={<Home/>}/>
+        <Route path='/contact' element={<Contact/>} />
+        <Route path='/peliculaDetail/:id' element={<Detail/>} />
       </Routes>
     </>
 
