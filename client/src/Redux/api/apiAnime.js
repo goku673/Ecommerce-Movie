@@ -18,3 +18,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 
         //https://api.jikan.moe/v4/top/anime
+
+        //GET https://api.jikan.moe/v4/anime?q={nombre} par buscar por nombre
+
+        //https://v0.dev/chat/urtUVSgPoUc

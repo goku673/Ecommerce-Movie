@@ -2,8 +2,13 @@ import { useState } from "react";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from '@mui/icons-material/Lock'; 
 import { useLogInMutation } from "../../Redux/api/authApi";
+import { setUser } from "../../Redux/slice/userSliece";
+import { useDispatch } from "react-redux";
+import { json, useNavigate } from "react-router-dom";
 
 const FormSignIn = (props) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [login, { isLoading, isError, error }] = useLogInMutation();
 
   const { handleGotoForm } = props;
@@ -12,22 +17,36 @@ const FormSignIn = (props) => {
     email: "",
     password: "",
   });
+
+  const [responseError, setResponseError] = useState("");
+
   const handleOnChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
   const handleOnSubmit = async (e) => {
+    setResponseError("");
     e.preventDefault();
-    // Aquí iría la lógica para enviar los datos del formulario
-    // Resetear los valores del formulario
-     await login(credentials);
+ 
+  const response  =  await login(credentials);
+    console.log(response);
+     if (response.error) {
+       setResponseError("Credenciales incorrectas");
+       return;
+     }
+    dispatch(setUser(response.data));
+    localStorage.setItem("user", JSON.stringify(response.data));
     setCredentials({ email: "", password: "" });
     // Redireccionar a la página principal o al dashboard según sea el caso
+    navigate("/home");
   };
 
   return (
     <div >  
     <form onSubmit={handleOnSubmit}>
       <div className="flex flex-col space-y-6">
+      {responseError && (
+              <p className="text-red-600 font-bold">{responseError}</p>
+            )}
         <div className="relative">
           <input
             type="email"
@@ -60,9 +79,9 @@ const FormSignIn = (props) => {
           </button>
       </div>
     </form>
-      {/* Link para ir a la página de registro */}
+      
       <p className="text-center text-sm text-gray-500">
-        ¿No tienes una cuenta? <button onClick={() => handleGotoForm("signUp")}>registrate</button>
+        ¿No tienes una cuenta? <button className="text-white font-bold" onClick={() => handleGotoForm("signUp")}>registrate</button>
       </p>
     </div>
   );

@@ -17,7 +17,7 @@ export const authApi = createApi({
     // arreglar aqui  porque al ingresar las credentiales estoy haciendo un get
     logIn: builder.mutation({
       query: (credentials) => ({
-        method: "GET",
+        method: "POST",
         url: "/signIn",
         body: credentials,
       }),
