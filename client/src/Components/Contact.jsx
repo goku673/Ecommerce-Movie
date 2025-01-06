@@ -16,7 +16,6 @@ const Contact = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-console.log(contact)
     if (contact.name === '' || contact.description === '') {
       Swal.fire({
         title: "Error",

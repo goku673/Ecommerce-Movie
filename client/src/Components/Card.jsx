@@ -1,12 +1,13 @@
 import React from 'react';
 import { Star, Clock, Calendar, Play, ShoppingCart, Heart } from 'lucide-react';
 
-function MovieCard({ movie, onAddToFavorites, isFavorite }) {
+  // Generic component
+  const MovieCard =({ movie, onAddToFavorites, isFavorite }) =>{
   return (
     <div className="bg-gradient-to-b from-gray-900 to-gray-950 rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 border border-purple-500/20">
       <div className="relative">
         <img 
-          src={movie.images.jpg.large_image_url || movie.images.jpg.image_url} 
+          src={movie.images.jpg.large_image_url || ""} 
           alt={movie.title} 
           className="w-full h-64 object-cover"
         />

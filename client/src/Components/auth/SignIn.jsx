@@ -28,7 +28,6 @@ const FormSignIn = (props) => {
     e.preventDefault();
  
   const response  =  await login(credentials);
-    console.log(response);
      if (response.error) {
        setResponseError("Credenciales incorrectas");
        return;

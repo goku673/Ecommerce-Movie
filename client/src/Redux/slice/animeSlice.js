@@ -11,15 +11,14 @@ const animeSlice = createSlice({
         },
         nexPage: (state) => {
             // Incrementa la página solo si es menor que 25
-            if (state.page < 25) {
+            
                 state.page += 1;
-            }
+            
         },
         prevPage: (state) => {
-            // Decrementa la página solo si es mayor que 1
-            if (state.page > 1) {
+            
                 state.page -= 1;
-            }
+            
         },
     }
 });

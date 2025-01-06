@@ -2,7 +2,7 @@ import React from 'react';
 import { X, LogOut, User, Mail, Camera } from 'lucide-react';
 
 const UserProfileModal = ({ isOpen, user, handleOnClose, handleOnLogout }) => {
-    console.log("de mi modal",user)
+    
   if (!isOpen) return null;
 
   return (

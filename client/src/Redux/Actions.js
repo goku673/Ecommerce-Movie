@@ -6,7 +6,6 @@ import axios from 'axios';
 
 export const getAnime = ()=> async (dispatch)=>{
        const response  = await axios.get(`http://localhost:3002/movies/`);
-       console.log(response);
        return dispatch({
            type : GET_ANIME,
            payload :response.data,

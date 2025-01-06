@@ -1,9 +1,8 @@
-// NavItems.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NavItems = ({ items }) => (
-    <>
+const NavItems = ({ items, className }) => (
+    <div className={`flex flex-col md:flex-row ${className}`}>
         {items.map((item) => (
             <Link
                 to={item.href}
@@ -13,7 +12,7 @@ const NavItems = ({ items }) => (
                 {item.label}
             </Link>
         ))}
-    </>
+    </div>
 );
 
 export default NavItems;

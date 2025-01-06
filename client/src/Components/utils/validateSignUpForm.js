@@ -1,5 +1,4 @@
 export const validateSignUpForm = (dataUser) => {
-    console.log(dataUser);
     const errors = [];
 
     if (!dataUser .username) {

@@ -34,7 +34,7 @@ const handleClick = () => {
     
  const alreadyAdded = (data,detail) => { 
        const result  = data.some((d) => d.id === detail.id);
-       console.log(result,'soy el resultado');
+      
  }
 
  
@@ -44,8 +44,6 @@ useEffect(() => {
 },[id]);
 
 
-
-console.log(" todo lo que contendra mi carrito",carMovie)
 
   return (
     <div className='container mx-auto'>
