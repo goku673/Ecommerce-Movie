@@ -20,7 +20,7 @@ const {enqueueSnackbar} = useSnackbar();
 
 const handleClick = () => {
   const result =carMovie.some((d => d.id === detailMovie.id));
-  console.log(result)
+
   if (result){
 
      enqueueSnackbar('already added',{variant : 'warning'});

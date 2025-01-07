@@ -17,11 +17,12 @@ const FormSignUp = (props) => {
   const [errors, setErrors] = useState({});
   const [errorResponse, setErrorResponse] = useState("");
   const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    isGoogle: false,
+        name: "",
+        email: "",
+        password: "",
+        image_profile: "",
+        confirmPassword: "",
+        isGoogle: false,
   });
 
   const handleChange = (e) => {
@@ -58,9 +59,10 @@ const FormSignUp = (props) => {
       }
      
       setFormData({
-        username: "",
+        name: "",
         email: "",
         password: "",
+        image_profile: "",
         confirmPassword: "",
         isGoogle: false,
       });
@@ -87,11 +89,10 @@ const FormSignUp = (props) => {
         isGoogle: true,
       }
       const responseDB =  await signUp(objUserInfo);
-      console.log("respuesta de mi data",responseDB?.data);
       dispatch(setUser(responseDB?.data));
       
       localStorage.setItem("user", JSON.stringify(responseDB?.data));
-      navigate("/home");
+      navigate("/main");
     } catch (error) {
       console.error("Error al obtener la información del usuario:", error);
     }
@@ -99,7 +100,6 @@ const FormSignUp = (props) => {
 
   const login = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
-      console.log("Token recibido:", tokenResponse);
       await fetchUserInfo(tokenResponse.access_token);
     },
     onError: (error) => {
@@ -113,7 +113,7 @@ const FormSignUp = (props) => {
         <h2 className="mt-6 text-center text-4xl font-bold text-white tracking-wide">
           Crea tu cuenta
         </h2>
-          
+          <h1 className="text-red-500">{isLoading? "Registrando...": ""}</h1>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
         {errorResponse  && (
               <p className="text-red-600 font-bold">{errorResponse}</p>
@@ -129,13 +129,13 @@ const FormSignUp = (props) => {
               </label>
               <div className="relative">
                 <input
-                  id="username"
-                  name="username"
+                  id="name"
+                  name="name"
                   type="text"
                   required
                   className="w-full pl-4 pr-8 py-3 bg-purple-900/30 rounded-lg text-white placeholder-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
                   placeholder="Nombre de usuario"
-                  value={formData.username}
+                  value={formData.name}
                   onChange={handleChange}
                 />
                 <PersonIcon

@@ -1,7 +1,7 @@
 import React from 'react';
 import GenericCard from './GenericCard';
 
-function MovieFavoriteList({ favoriteMovies, addFavorites, removeFavorites, activeIndex }) {
+const  MovieFavoriteList =({ favoriteMovies, addFavorites, removeFavorites, activeIndex, handlerBuy }) => {
   const favoriteMovieConfig = {
     imageField: 'image_url',
     titleField: 'title',
@@ -11,6 +11,7 @@ function MovieFavoriteList({ favoriteMovies, addFavorites, removeFavorites, acti
     yearField: 'year',
     trailerField: 'trailer_url',
     id_movieField: 'id_movie',
+    idFav : 'id'
   };
 
   const handleAddToFavorites = async (item) => {
@@ -18,15 +19,15 @@ function MovieFavoriteList({ favoriteMovies, addFavorites, removeFavorites, acti
   };
 
   const handleDeleteFavorites = async (item) => {
-    // await removeFavorites(item.id_movie);
+     await removeFavorites(item.id);
   };
 
-  const renderCustomField = (movie) => (
-    <p className="text-sm text-gray-300">
-      <span className="font-semibold">Género:</span> {"pepitooooooooooooo"}
-    </p>
-  );
-
+  const renderCustomField = (movie) =>(
+        <p className="text-sm text-gray-300">
+          <span className="font-semibold">Género:</span> {movie.genre || "Desconocido"}
+        </p>
+      );
+  
   return (
     <>
       {favoriteMovies.map((movie, index) => {
@@ -48,6 +49,8 @@ function MovieFavoriteList({ favoriteMovies, addFavorites, removeFavorites, acti
               isFavorite={true} 
               renderCustomField={renderCustomField}
               removeFavorites={handleDeleteFavorites}
+              handlerBuy={handlerBuy}
+              isRenderFavorite={true}
             />
           </div>
         );

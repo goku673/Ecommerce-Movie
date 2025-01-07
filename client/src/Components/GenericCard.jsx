@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, Clock, Calendar, Play, ShoppingCart, Heart } from 'lucide-react';
+import { Star, Clock, Calendar, Play, ShoppingCart, Heart,HeartOff } from 'lucide-react';
 
 const GenericCard = ({ 
   item, 
@@ -8,6 +8,8 @@ const GenericCard = ({
   config,
   renderCustomField,
   removeFavorites,
+  handlerBuy,
+  isRenderFavorite
 }) => {
   const {
     imageField,
@@ -20,23 +22,33 @@ const GenericCard = ({
     trailerField,
     favoriteIdField,
     id_movieField,
+    idFav,
+    genresField,
   } = config;
 
   const getNestedValue = (obj, path) => {
+    if (typeof path !== 'string') {
+        console.warn('El path debe ser una cadena. Recibido:', path);
+        return undefined;
+    }
     return path.split('.').reduce((acc, part) => acc && acc[part], obj);
-  };
+};
 
   const handleFavoriteClick = () => {
-    if (isFavorite) {
-      removeFavorites({
-        image_url: getNestedValue(item, imageField),
-        title: getNestedValue(item, titleField),
-        score: getNestedValue(item, scoreField),
-        episodes: getNestedValue(item, episodesField),
-        year: getNestedValue(item, yearField),
-        trailer_url: getNestedValue(item, trailerField),
-        id_movie: getNestedValue(item, id_movieField),
-      });
+  
+    if (isFavorite) { 
+        if (idFav != undefined) {
+            removeFavorites({
+                id: getNestedValue(item,idFav),
+                id_movie: getNestedValue(item, id_movieField),
+                
+              });
+        }else {
+            removeFavorites({
+                id_movie: getNestedValue(item, id_movieField),
+              });
+        }
+      
     } else {
       onAddToFavorites({
         image_url: getNestedValue(item, imageField),
@@ -46,6 +58,7 @@ const GenericCard = ({
         year: getNestedValue(item, yearField),
         trailer_url: getNestedValue(item, trailerField),
         id_movie: getNestedValue(item, id_movieField),
+        genre: item.genres.map(g => g.name).join(', '),
       });
     }
   };
@@ -116,9 +129,32 @@ const GenericCard = ({
             Ver Trailer
           </a>
         )}
-        <button className="px-4 py-2 bg-pink-600 text-white rounded hover:bg-pink-700 transition-colors text-sm font-medium flex-grow ml-2 flex items-center justify-center">
-          <ShoppingCart className="w-4 h-4 mr-1" />
-          Comprar
+        <button className="px-4 py-2 bg-pink-600 text-white rounded hover:bg-pink-700 transition-colors text-sm font-medium flex-grow ml-2 flex items-center justify-center" onClick={() => {
+            if (isRenderFavorite) {
+                removeFavorites({
+                    id: getNestedValue(item,idFav),
+                    image_url: getNestedValue(item, imageField),
+                    title: getNestedValue(item, titleField),
+                    score: getNestedValue(item, scoreField),
+                    episodes: getNestedValue(item, episodesField),
+                    year: getNestedValue(item, yearField),
+                    trailer_url: getNestedValue(item, trailerField),
+                    id_movie: getNestedValue(item, id_movieField),
+                  });
+            }else {
+                handlerBuy(item);
+            }
+        }}>
+          {isRenderFavorite ? 
+          <span className="lex-grow ml-2 flex items-center justify-center">
+            <HeartOff className="w-4 h-4 mr-1"/>
+            quitar
+          </span>  
+          : <span className="lex-grow ml-2 flex items-center justify-center">
+                <ShoppingCart className="w-4 h-4 mr-1" />
+                Comprar
+            </span>}
+          
         </button>
       </div>
     </div>

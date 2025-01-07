@@ -44,7 +44,7 @@ const UserProfileModal = ({ isOpen, user, handleOnClose, handleOnLogout }) => {
                         <Camera className="h-8 w-8 text-white" />
                       </div>
                     </div>
-                    <p className="text-sm text-gray-400 mt-2">Haz clic para cambiar la imagen</p>
+                  
                   </div>
                   <div className="flex items-center space-x-3">
                     <User className="h-5 w-5 text-purple-500" />

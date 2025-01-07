@@ -3,12 +3,11 @@ import { Link } from "react-router-dom"
 import { ChevronRight, Play } from 'lucide-react'
 import FormSignIn from "./auth/SignIn";
 import FormSignUp from "./auth/SignUp";
-
-// Importa las imágenes
 import seya from '../image/seya.jpg'
 import demon from '../image/demon.jpg'
 import boku from '../image/boku.jpg'
 import naruto from '../image/naruto.jpg'
+import { useNavigate } from "react-router-dom";
 
 
 const images = [
@@ -39,6 +38,8 @@ const images = [
   const textButtonPay = "Comenzar ahora";
   const textButtonSesion = "Iniciar Sesión";
 const  LandingPage = () => {
+  const navigate = useNavigate();
+  const user = localStorage.getItem("user");
   const [currentImage, setCurrentImage] = useState(0);
   const [goForm, setGoForm] = useState("");
 
@@ -49,9 +50,12 @@ const  LandingPage = () => {
  const handleGotoForm = (state) => {
    setGoForm(state);
  }
+ const handleNavigate = () => {
+   navigate("/main");
+ }
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-950">
-      {/* Vista Móvil */}
+      {/* Vista Móvil  separe after*/}
       <div className="lg:hidden flex flex-col items-center px-4 py-8 space-y-8">
         <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden">
           <img
@@ -75,18 +79,22 @@ const  LandingPage = () => {
           <p className="text-gray-400 text-sm max-w-md mx-auto">
             {subtitleHeader}
           </p>
-          <Link to="/home" className="">
-            <button className="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-medium transition-all duration-200 flex items-center justify-center">
-              <Play className="mr-2 h-4 w-4" /> {textButtonPay}
-            </button>
-            <button className="text-white">
-                  {textButtonSesion}
-                </button>
-          </Link>
+             {user && (<button className="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-medium transition-all duration-200 flex items-center justify-center" onClick={handleNavigate}>
+                        <Play className="mr-2 h-4 w-4" /> {textButtonPay}
+                     </button>)
+              }
+            {goForm !== "signIn" &&  (<button className="flex w-full text-center justify-center items-center px-8 py-4 rounded-lg bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white font-medium transition-all duration-200 " onClick={() => handleGotoForm("signIn")}>
+                                       {textButtonSesion}
+                                    </button>)
+            }
+            <div className="bg-white w-full h-0.5"></div>
+            <div className="flex items-center justify-center">
+             { goForm === "signIn" && <FormSignIn handleGotoForm={handleGotoForm}/>}
+             { goForm === "signUp" && <FormSignUp handleGotoForm={handleGotoForm}/>}
+             </div>
         </div>
       </div>
-
-      {/* Vista Desktop */}
+      {/* Vista Desktop  separe after */}
       <div className="hidden lg:flex min-h-screen">
         <div className="flex-1 flex items-center justify-center p-12">
           { goForm === "" ? (
@@ -98,13 +106,14 @@ const  LandingPage = () => {
                      {subtitleHeader}
                    </p>
                    <div className="flex gap-5 flex-row">
-                     <Link to="/home">
-                       <button className="px-8 py-4 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-medium transition-all duration-200 flex items-center">
-                         <Play className="mr-2 h-4 w-4" />{textButtonPay}
-                       </button>
-                     </Link>
+                       { user  &&  (<button className="px-8 py-4 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-medium transition-all duration-200 flex items-center" onClick={handleNavigate}>
+                                     <Play className="mr-2 h-4 w-4" />{textButtonPay}
+                                   </button>)
+                       }
                       
-                     <button className="text-white" onClick={() => handleGotoForm("signIn")}>
+                     
+                      
+                     <button className="px-8 py-4 rounded-lg bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white font-medium transition-all duration-200 flex items-center" onClick={() => handleGotoForm("signIn")}>
                          {textButtonSesion}
                        </button>
                    </div>

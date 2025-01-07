@@ -35,8 +35,7 @@ const FormSignIn = (props) => {
     dispatch(setUser(response.data));
     localStorage.setItem("user", JSON.stringify(response.data));
     setCredentials({ email: "", password: "" });
-    // Redireccionar a la página principal o al dashboard según sea el caso
-    navigate("/home");
+    navigate("/main");
   };
 
   return (

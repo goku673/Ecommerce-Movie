@@ -8,12 +8,16 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
         endpoints: (builder) => ({
             getAnime : builder.query({
                 query: (page) => `?page=${page}`,
-            })
+            }),
+            searchAnime : builder.query({
+                query: (name) => `?q=${name}`,
+            }),
         })
   });
 
     export const {
         useGetAnimeQuery,
+        useSearchAnimeQuery,
         } = animeApi;
 
 

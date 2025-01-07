@@ -4,7 +4,7 @@ import { X } from 'lucide-react';
 const Modal = ({
   isModalOpen,
   handleAcepted,
-  handleDecline,
+  handleDeclined,
   buttonNameAcepted,
   ButtonNameDeclined,
   titleModal,
@@ -46,7 +46,7 @@ const Modal = ({
               {buttonNameAcepted}
             </button>
             <button
-              onClick={handleDecline}
+              onClick={handleDeclined}
               className="px-5 py-2.5 ms-3 rounded-lg border border-purple-500/50 text-gray-300 hover:bg-purple-500/10 font-medium transition-colors"
             >
               {ButtonNameDeclined}
