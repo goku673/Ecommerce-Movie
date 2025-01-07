@@ -1,13 +1,14 @@
+const { conn } = require('./src/db');
 const server = require('./src/app');
-const axios = require('axios');
-const {conn}  = require('./src/db');
-const PORT = 3002;
+const PORT = process.env.PORT || 3002;
 
-conn.sync({alter : true}).then(() => {
-     
-    server.listen( PORT , async () => {
-        console.log("escuchando en el puerto 3002");
+// Cambia force: true a simplemente conn.sync() o conn.sync({ alter: true })
+conn.sync() // O conn.sync({ alter: true }) si necesitas ajustar la estructura
+    .then(() => {
+        server.listen(PORT, () => {
+            console.log(`Escuchando en el puerto ${PORT}`);
+        });
+    })
+    .catch(err => {
+        console.error('Error al sincronizar la base de datos:', err);
     });
-})
-
-// si se hacer cambios en los modelos o cambios grandes alter : true en vez de force : true
