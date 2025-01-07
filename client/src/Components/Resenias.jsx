@@ -1,6 +1,6 @@
 
 import Comentario from './CardComentario';
-import FormularioComentario from './formComentario';
+import FormularioComentario from './FormularioComentario';
 import { useGetReseniasQuery, usePostReseniasMutation } from '../Redux/api/ReseniasApi';
 import { useSelector } from 'react-redux';
 import Button from './common/Button';
