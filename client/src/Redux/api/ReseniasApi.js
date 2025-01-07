@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+const url_Base = import.meta.env.VITE_URL_BASE;
 
 export const reseniasApi = createApi({
   reducerPath: "reseniasApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3002/resenias"
+    baseUrl: `${url_Base}/resenias`
   }),
 
   endpoints: (builder) => ({

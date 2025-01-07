@@ -1,10 +1,10 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
+const url_Base = import.meta.env.VITE_URL_BASE;
 export const favoriteAnimeApi = createApi({
     reducerPath: 'favoritesAnimeApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:3002/movies",
+        baseUrl: `${url_Base}/movies`
     }),
     endpoints: (builder) => ({
         getFavorites: builder.query({
@@ -27,7 +27,7 @@ export const favoriteAnimeApi = createApi({
         }),
     }),
 });
-//http://localhost:3002/movies/delete-favorites/user/1/83b4b180-c8e3-4940-9ed6-327d87958f5a
+
 export const {
     useGetFavoritesQuery,
     usePostFavoritesMutation,
