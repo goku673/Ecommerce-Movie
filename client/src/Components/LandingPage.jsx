@@ -79,7 +79,7 @@ const  LandingPage = () => {
           <p className="text-gray-400 text-sm max-w-md mx-auto">
             {subtitleHeader}
           </p>
-             {user && (<button className="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-medium transition-all duration-200 flex items-center justify-center" onClick={handleNavigate}>
+             {user && user !== undefined && (<button className="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-medium transition-all duration-200 flex items-center justify-center" onClick={handleNavigate}>
                         <Play className="mr-2 h-4 w-4" /> {textButtonPay}
                      </button>)
               }
@@ -106,7 +106,7 @@ const  LandingPage = () => {
                      {subtitleHeader}
                    </p>
                    <div className="flex gap-5 flex-row">
-                       { user  &&  (<button className="px-8 py-4 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-medium transition-all duration-200 flex items-center" onClick={handleNavigate}>
+                       { user && user !== undefined  &&  (<button className="px-8 py-4 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-medium transition-all duration-200 flex items-center" onClick={handleNavigate}>
                                      <Play className="mr-2 h-4 w-4" />{textButtonPay}
                                    </button>)
                        }

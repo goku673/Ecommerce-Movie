@@ -52,6 +52,7 @@ const FormSignUp = (props) => {
     
     try {
       const response = await signUp(formData);
+      localStorage.setItem("user", JSON.stringify(response?.data));
       setErrorResponse("");
       if (response.error) {
         setErrorResponse(response.error.data.error);
@@ -88,11 +89,16 @@ const FormSignUp = (props) => {
         password: "",
         isGoogle: true,
       }
-      const responseDB =  await signUp(objUserInfo);
-      dispatch(setUser(responseDB?.data));
+      try {
+        const responseDB = await signUp(objUserInfo);
+        console.log(responseDB);
+        dispatch(setUser (responseDB?.data));
+        localStorage.setItem("user", JSON.stringify(responseDB?.data));
+        navigate("/main");
+      } catch (error) {
+        console.error(error);
+      }
       
-      localStorage.setItem("user", JSON.stringify(responseDB?.data));
-      navigate("/main");
     } catch (error) {
       console.error("Error al obtener la información del usuario:", error);
     }

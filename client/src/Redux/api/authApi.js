@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const url_Base = import.meta.env.VITE_URL_BASE;
+console.log(url_Base);
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
@@ -15,7 +16,7 @@ export const authApi = createApi({
         body: signUp,
       }),
     }),
-    // arreglar aqui  porque al ingresar las credentiales estoy haciendo un get
+    
     logIn: builder.mutation({
       query: (credentials) => ({
         method: "POST",
