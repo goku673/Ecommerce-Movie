@@ -24,7 +24,7 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "node index.js"
   },
   "author": "freddy",
   "license": "ISC",
