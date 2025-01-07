@@ -1,12 +1,13 @@
 const {Router} = require('express');
-const { getMovies, getMoviesById, getMoviesByName } = require('../handlers/handlerGetMovies');
 
+const { getFavoritesHandler, postFavoritesHandler, deleteFavoritesHandler} = require('../handlers/handleFavoriteMovie');
 
 const movieRouter = Router();
 // CRUD
 
-movieRouter.get('/',getMovies);
-movieRouter.get('/:id',getMoviesById);
-movieRouter.get('/name',getMoviesByName);
+
+movieRouter.get('/favorites/:userId',getFavoritesHandler);
+movieRouter.post('/new-favorites', postFavoritesHandler);
+movieRouter.delete('/delete-favorites/user/:userId/:idFavorite', deleteFavoritesHandler);
 
 module.exports = movieRouter;

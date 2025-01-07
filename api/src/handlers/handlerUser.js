@@ -1,4 +1,4 @@
-const { postUserDB, getUserDB } = require('../controllers/controllerUser');
+const { postUserDB, getUserDB, getAllUsersDB } = require('../controllers/controllerUser');
 
 const postUser = async (req, res, next) => {
    try {
@@ -28,8 +28,22 @@ const getUser = async (req, res, next) => {
     }
 }
 
+  const getAllUsers = async (req, res, next) => {
+     try {
+        const response = await getAllUsersDB();
+        res.status(200).json(response);
+     } catch (error) {
+        next({
+            message: error.message,
+            statusCode: error.statusCode || 404,
+            requestBody: req.body,
+        })
+     }
+  }
+
 
 module.exports = {
     postUser,
     getUser,
+    getAllUsers,
 }
