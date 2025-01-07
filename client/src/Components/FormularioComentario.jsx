@@ -21,7 +21,7 @@ const FormularioComentario = ({ onSubmit, idUser }) => {
       <textarea
         className="w-full p-4 border border-blue-500/30 bg-gray-800/70 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out resize-none"
         rows="4"
-        placeholder="Escribe tu comentario futurista..."
+        placeholder="Escribe tu comentario ... :)"
         value={nuevoComentario}
         onChange={(e) => setNuevoComentario(e.target.value)}
       />
