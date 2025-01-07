@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Comentario from './CardComentario';
 import FormularioComentario from './formComentario';
 import { useGetReseniasQuery, usePostReseniasMutation } from '../Redux/api/ReseniasApi';
