@@ -25,9 +25,6 @@ const postFavoritesHandler = async (req, res, next) => {
 const deleteFavoritesHandler = async (req, res, next) => {
    try {
     const { userId, idFavorite } = req.params;
-    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    console.log(userId, idFavorite);
-    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     await deleteFavoritesController(parseInt(userId, 10), idFavorite);
     res.status(204).json({ message: 'Favorito eliminado con éxito.' });
    } catch (error) {
