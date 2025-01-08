@@ -11,14 +11,13 @@ const { User, Favorite } = require('../db');
     }
 
     const postFavoritesController = async (body) => {
-        const { id_movie, user_id, title } = body;
-
+        const { id_movie, user_id, title, image_url } = body;
+       
         try {
-            const existingFavorite = await Favorite.findOne({
+            var existingFavorite = await Favorite.findOne({
                 where: {
-                    id_movie: id_movie,
                     user_id: user_id,
-                    title : title,
+                    image_url : image_url
                 },
             });
 
@@ -29,7 +28,7 @@ const { User, Favorite } = require('../db');
             return newFavorite;
 
         } catch (error) {
-            throw new Error(`Error al agregar a favoritos: ${error.message}`);
+            throw new Error(`Error al agregar a favoritos: ${existingFavorite}`);
         }
     };
 

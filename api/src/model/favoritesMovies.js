@@ -12,12 +12,12 @@ module.exports = (sequelize) => {
         image_url: {
             type: DataTypes.STRING(300),
             allowNull: true,
-            unique: true,
+            
         },
         title: {
             type: DataTypes.STRING,
             allowNull: true,
-            unique: true,
+            
         },
         score: {
             type: DataTypes.INTEGER,
