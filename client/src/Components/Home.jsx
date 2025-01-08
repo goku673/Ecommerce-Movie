@@ -42,20 +42,23 @@ const Home = () => {
   }); 
   const [isBuy, setIsBuy] = useState(false);
 
-  const userVerified = useMemo(() => JSON.parse(localStorage.getItem("user")),[]);
+  const userVerified = useMemo(() => {
+    const user = localStorage.getItem("user");
+    return user ? JSON.parse(user) : null;
+  }, []);
   const { data: favoriteAnimeData, error: errorFavorite, isLoading: isLoadingFavorite, refetch: refetchFavorites } = useGetFavoritesQuery(JSON.parse(localStorage.getItem("user")).id);
   const { data: searchResults, isFetching: isSearching } = useSearchAnimeQuery(searchQuery, {
     skip: !searchQuery,
   });
 
   const  [deleteFavorites] = useDeleteFavoritesMutation();
-  let animeList = (searchQuery && !isSearching) ? searchResults?.data : animeData?.data;
-
+  let animeList = (searchQuery && !isSearching && searchResults?.data) ? searchResults.data : animeData?.data || [];
+  
   useEffect(() => {
     if (userVerified) {
-      dispatch(setUser(userVerified));
+      dispatch(setUser (userVerified));
     }
-  }, [dispatch, userVerified,itemForModal]);
+  }, [dispatch, userVerified]);
 
   const handleOnClose = () => {
     setIsModalOpen(false);
@@ -65,18 +68,14 @@ const Home = () => {
         setIsBuy(true); 
   }
 
-  
-  
   const handleCloseModal = () => {
        setIsModalOpenBuy(false);
        setIsBuy(false);
   }
 
- 
-
   const handleOnLogout = () => {
     localStorage.removeItem("user");
-    navigate("/");
+    dispatch(setUser (null));
     setIsModalOpen(false);
   };
 
