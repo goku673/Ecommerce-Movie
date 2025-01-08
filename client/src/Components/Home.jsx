@@ -77,6 +77,7 @@ const Home = () => {
     localStorage.removeItem("user");
     dispatch(setUser (null));
     setIsModalOpen(false);
+    navigate("/");
   };
 
   const NavItemsData = [
