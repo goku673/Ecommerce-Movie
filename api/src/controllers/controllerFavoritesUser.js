@@ -1,4 +1,5 @@
 
+const { title } = require('process');
 const { User, Favorite } = require('../db');
 
     const getFavoritesController = async (userId) => {
@@ -10,13 +11,14 @@ const { User, Favorite } = require('../db');
     }
 
     const postFavoritesController = async (body) => {
-        const { id_movie, user_id } = body;
+        const { id_movie, user_id, title } = body;
 
         try {
             const existingFavorite = await Favorite.findOne({
                 where: {
                     id_movie: id_movie,
                     user_id: user_id,
+                    title : title,
                 },
             });
 
