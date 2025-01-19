@@ -2,7 +2,6 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Home from './Components/Home';
 import LandingPage from './Components/LandingPage';
-import Detail from './Components/Detail/Detail';
 import FavoritesMovies from './Components/FavoritesMovies';
 import Resenias from './Components/Resenias';
 
