@@ -66,7 +66,7 @@ const UserProfileModal = ({ isOpen, user, handleOnClose, handleOnLogout }) => {
             >
               <LogOut className="h-5 w-5 mr-2" />
               Cerrar Sesión 
-              hola Freddy
+              hola Mayra
             </button>
           </div>
         </div>
